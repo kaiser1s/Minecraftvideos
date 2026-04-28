@@ -1,63 +1,36 @@
 :root {
     --netflix-red: #e50914;
     --bg-black: #141414;
-    --text-white: #ffffff;
-    --text-gray: #a3a3a3;
 }
 
 body {
     background-color: var(--bg-black);
-    color: var(--text-white);
+    color: white;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
-    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Nav Bar */
 .netflix-nav {
     display: flex;
     align-items: center;
-    padding: 20px 4%;
+    padding: 15px 4%;
     background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
     position: fixed;
-    top: 0; width: 100%; z-index: 1000;
+    top: 0; width: 100%; z-index: 100;
 }
 
-.logo {
-    color: var(--netflix-red);
-    font-weight: 900;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-}
+.logo { color: var(--netflix-red); font-weight: 900; font-size: 1.4rem; }
+.tabs { display: flex; gap: 20px; margin-left: 30px; }
+.tab { cursor: pointer; color: #a3a3a3; font-size: 0.9rem; transition: 0.2s; }
+.tab.active, .tab:hover { color: white; }
 
-.tabs {
-    display: flex;
-    gap: 20px;
-    margin-left: 40px;
-}
-
-.tab {
-    cursor: pointer;
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    transition: 0.3s;
-}
-
-.tab.active, .tab:hover {
-    color: var(--text-white);
-}
-
-/* Grid Layout */
-.content {
-    margin-top: 100px;
-    padding: 0 4%;
-}
+.content { margin-top: 90px; padding: 20px 4%; }
 
 .posters-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 15px;
-    padding-bottom: 50px;
 }
 
 .poster-card {
@@ -65,88 +38,29 @@ body {
     transition: transform 0.3s ease;
 }
 
-.poster-card:hover {
-    transform: scale(1.05);
-    z-index: 10;
-}
+.poster-card:hover { transform: scale(1.06); }
+.poster-card img { width: 100%; border-radius: 4px; display: block; }
 
-.poster-card img {
-    width: 100%;
-    border-radius: 4px;
-}
+.video-info { padding: 10px 0; }
+.creator-tag { color: var(--netflix-red); font-size: 0.7rem; font-weight: bold; text-transform: uppercase; margin: 0; }
+.video-title { font-size: 0.85rem; margin: 4px 0; color: #e5e5e5; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-.video-info {
-    padding-top: 10px;
-}
-
-.creator-tag {
-    color: var(--netflix-red);
-    font-size: 0.75rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.video-title {
-    font-size: 0.9rem;
-    margin: 5px 0;
-    color: var(--text-white);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* Theater Mode (FULLSCREEN) */
+/* THEATER MODE */
 .theater-overlay {
     display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
     background: #000;
-    z-index: 9999;
+    z-index: 200;
 }
 
-#theater-player {
-    width: 100%;
-    height: 100%;
-}
+#theater-player { width: 100%; height: 100%; }
 
 .close-btn {
     position: absolute;
-    top: 20px; right: 40px;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: 1px solid white;
-    padding: 8px 15px;
-    cursor: pointer;
-    z-index: 10001;
-    font-weight: bold;
-}
-
-/* Disclaimer Overlay */
-.theater-disclaimer {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    transition: opacity 0.8s;
-}
-
-.disclaimer-text {
-    border-left: 4px solid var(--netflix-red);
-    padding-left: 20px;
-}
-
-.warning {
-    color: var(--netflix-red);
-    letter-spacing: 5px;
-    font-size: 0.8rem;
-}
-
-.sub-text {
-    font-size: 0.8rem;
-    color: var(--text-gray);
+    top: 20px; right: 30px;
+    background: rgba(0,0,0,0.6);
+    color: white; border: 1px solid white;
+    padding: 8px 16px; cursor: pointer; z-index: 201;
 }
