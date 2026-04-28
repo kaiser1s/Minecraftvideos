@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unstable SMP Hub | Netflix Edition</title>
+    <title>Unstable Hub</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,25 +20,13 @@
     </nav>
 
     <main class="content">
-        <section class="video-row">
-            <h2 id="row-title">Recently Uploaded</h2>
-            <div class="posters-grid" id="video-grid">
-                <p class="loading">Loading chaos...</p>
-            </div>
-        </section>
+        <div class="posters-grid" id="video-grid">
+            <p class="loading">Fetching latest videos...</p>
+        </div>
     </main>
 
     <div id="theater-mode" class="theater-overlay">
         <button class="close-btn" onclick="closeTheater()">✕ Close</button>
-        
-        <div id="theater-disclaimer" class="theater-disclaimer">
-            <div class="disclaimer-text">
-                <span class="warning">NOTICE</span>
-                <p>This video is owned by <span id="current-creator">Creator</span>.</p>
-                <p class="sub-text">This is a fan-curated experience. All rights belong to the original producer.</p>
-            </div>
-        </div>
-
         <iframe id="theater-player" src="" frameborder="0" allow="autoplay; fullscreen"></iframe>
     </div>
 
