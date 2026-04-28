@@ -1,96 +1,89 @@
 :root {
-    --netflix-red: #e50914;
-    --bg-black: #141414;
+    --unstable-red: #d32f2f; /* Darker, Minecraft-friendly red */
+    --unstable-black: #101010;
+    --text-main: #fff;
+    --text-muted: #b3b3b3;
 }
 
 body {
-    background-color: var(--bg-black);
-    color: white;
+    background-color: var(--unstable-black);
+    color: var(--text-main);
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
+    padding: 20px;
 }
 
-/* Hero Section */
-.hero {
-    position: relative;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    padding-left: 5%;
-    overflow: hidden;
-}
-
-.video-background-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-#hero-player {
-    width: 100%;
-    height: 100%;
-    transform: scale(1.3); /* Removes black bars */
-}
-
-/* The Netflix Fade (Bottom and Left) */
-.hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40%;
-    background: linear-gradient(to top, var(--bg-black), transparent);
-}
-
-/* Cinematic Disclaimer Overlay */
-.cinematic-disclaimer {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    transition: opacity 1s ease-in-out;
-}
-
-.disclaimer-content {
+/* Red-Themed Header from your image */
+.unstable-header {
+    background-color: #7f0000; /* Dark Deep Red from your image */
     text-align: center;
-    border-left: 4px solid var(--netflix-red);
-    padding-left: 20px;
+    padding: 30px;
+    border-radius: 8px 8px 0 0;
 }
 
-.warning-tag {
-    color: var(--netflix-red);
-    letter-spacing: 5px;
+.unstable-header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 900;
+}
+
+.unstable-header p {
+    color: #ffd7d7;
+    font-size: 1rem;
+    margin: 10px 0 0 0;
+}
+
+/* Netflix Style Video Row */
+.video-row h2 {
+    margin: 30px 0 10px 5%;
     font-weight: bold;
-    font-size: 0.8rem;
-}
-
-/* Video Row Styling */
-.video-row {
-    padding: 20px 5%;
+    font-size: 1.4rem;
 }
 
 .posters-container {
     display: flex;
-    gap: 10px;
-    overflow-x: scroll;
-    padding: 10px 0;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 10px 5%;
+}
+
+.poster-card {
+    min-width: 250px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
 .poster-card img {
-    width: 250px;
+    width: 100%;
     border-radius: 4px;
-    transition: transform 0.3s ease;
-    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.poster-card:hover {
+    transform: scale(1.08);
 }
 
 .poster-card img:hover {
-    transform: scale(1.1);
-    z-index: 2;
+    border: 2px solid var(--unstable-red);
+}
+
+/* Video Info Box below thumbnail */
+.video-info {
+    padding-top: 8px;
+}
+
+.creator-name {
+    color: var(--unstable-red);
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.video-title {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 4px 0 0 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
