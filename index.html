@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unstable Hub</title>
+    <title>Unstable Hub | Ad-Free</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -22,23 +22,23 @@
     <header class="hero-banner">
         <div class="hero-content">
             <h1 class="hero-title">UNSTABLE SMP</h1>
-            <p class="hero-desc">The most chaotic Minecraft civilization project. Watch the latest episodes from the crew.</p>
-            <div class="hero-btns">
-                <button class="btn-play" onclick="filterBy('Wemmbu', event)">Browse Wemmbu</button>
-            </div>
+            <p class="hero-desc">Experience the civilization chaos without interruptions. Ad-free streaming for the Unstable crew.</p>
         </div>
         <div class="hero-vignette"></div>
     </header>
 
     <main class="content-area">
-        <h2 class="row-header">Latest Episodes</h2>
+        <h2 class="row-header" id="current-category">Latest Episodes</h2>
         <div class="posters-grid" id="video-grid">
-            </div>
+            <div class="loading">Bypassing ads and loading content...</div>
+        </div>
     </main>
 
     <div id="theater-mode" class="theater-overlay">
-        <button class="close-btn" onclick="closeTheater()">✕ Close</button>
-        <iframe id="theater-player" src="" frameborder="0" allow="autoplay; fullscreen"></iframe>
+        <div class="controls-top">
+            <button class="close-btn" onclick="closeTheater()">✕ Back to Browse</button>
+        </div>
+        <iframe id="theater-player" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture"></iframe>
     </div>
 
     <script src="script.js"></script>
