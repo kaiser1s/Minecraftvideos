@@ -1,0 +1,28 @@
+<section class="hero">
+    <div class="video-background-container">
+        <div id="hero-player"></div>
+        <div class="cinematic-disclaimer" id="hero-overlay">
+            <div class="disclaimer-content">
+                <span class="warning-tag">ATTENTION</span>
+                <p>This production is owned by <span id="hero-creator">%creator%</span>.</p>
+                <p class="sub-text">All rights reserved to the original content creator.</p>
+            </div>
+        </div>
+    </div>
+    <div class="hero-info">
+        <img src="unstable-logo.png" alt="Unstable SMP" class="series-logo">
+        <h2>The Final War: Episode 4</h2>
+        <p>The stakes have never been higher. Watch the latest chaos unfold on the Unstable SMP.</p>
+        <button class="play-btn" onclick="playHeroVideo()">▶ Play</button>
+    </div>
+</section>
+
+<section class="video-row">
+    <h3>Trending Now</h3>
+    <div class="posters-container">
+        <div class="poster-card"><img src="thumb1.jpg" alt="Video"></div>
+        <div class="poster-card"><img src="thumb2.jpg" alt="Video"></div>
+        <div class="poster-card"><img src="thumb3.jpg" alt="Video"></div>
+        <div class="poster-card"><img src="thumb4.jpg" alt="Video"></div>
+    </div>
+</section>
