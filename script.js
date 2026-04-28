@@ -7,91 +7,64 @@ const creators = [
 
 let allVideos = [];
 
-async function init() {
+async function loadVideos() {
     const grid = document.getElementById('video-grid');
     
-    for (const creator of creators) {
-        // Fetching from YouTube RSS via a free JSON converter
-        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${creator.id}`;
-        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
-        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
-
-            if (data.items) {
-                data.items.forEach(item => {
-                    allVideos.push({
-                        title: item.title,
-                        creator: creator.name,
-                        thumb: item.thumbnail,
-                        id: item.link.split('v=')[1]
-                    });
-                });
+    // Fetch all creators at the same time for speed
+    const requests = creators.map(c => 
+        fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(`https://www.youtube.com/feeds/videos.xml?channel_id=${c.id}`)}`)
+        .then(res => res.json())
+        .then(data => {
+            if(data.items) {
+                return data.items.map(item => ({
+                    title: item.title,
+                    creator: c.name,
+                    thumb: item.thumbnail,
+                    id: item.link.split('v=')[1]
+                }));
             }
-        } catch (err) {
-            console.error("Error loading " + creator.name);
-        }
-    }
-    
-    // Sort videos by date (approximate based on order)
+            return [];
+        })
+    );
+
+    const results = await Promise.all(requests);
+    allVideos = results.flat();
     render('all');
 }
 
 function render(filter) {
     const grid = document.getElementById('video-grid');
     grid.innerHTML = '';
-
     const list = (filter === 'all') ? allVideos : allVideos.filter(v => v.creator === filter);
 
     list.forEach(video => {
-        const card = `
-            <div class="poster-card" onclick="playVideo('${video.id}', '${video.creator}')">
-                <img src="${video.thumb}" alt="thumbnail">
+        grid.innerHTML += `
+            <div class="poster-card" onclick="openVideo('${video.id}')">
+                <img src="${video.thumb}" loading="lazy">
                 <div class="video-info">
                     <p class="creator-tag">${video.creator}</p>
                     <p class="video-title">${video.title}</p>
                 </div>
-            </div>
-        `;
-        grid.innerHTML += card;
+            </div>`;
     });
 }
 
-function playVideo(id, creator) {
+function openVideo(id) {
     const overlay = document.getElementById('theater-mode');
     const player = document.getElementById('theater-player');
-    const disclaimer = document.getElementById('theater-disclaimer');
-    
-    document.getElementById('current-creator').innerText = creator;
-    
     overlay.style.display = 'block';
-    player.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&showinfo=0`;
-
-    // Handle 5-second disclaimer
-    disclaimer.style.display = 'flex';
-    disclaimer.style.opacity = '1';
-
-    setTimeout(() => {
-        disclaimer.style.opacity = '0';
-        setTimeout(() => {
-            disclaimer.style.display = 'none';
-        }, 800);
-    }, 5000);
+    player.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
 }
 
 function closeTheater() {
     document.getElementById('theater-mode').style.display = 'none';
-    document.getElementById('theater-player').src = ''; // Kill the audio
+    document.getElementById('theater-player').src = '';
 }
 
 function filterBy(name, event) {
-    // Update active UI
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     event.target.classList.add('active');
-    
     render(name);
 }
 
-// Start everything
-init();
+window.onload = loadVideos;
