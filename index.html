@@ -3,35 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unstable SMP Hub</title>
+    <title>Unstable SMP Hub | Netflix Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="unstable-header">
-        <h1>Welcome to the Hub</h1>
-        <p>No Commitments. Stream all the latest Minecraft chaos online anytime.</p>
-    }
-    </div>
+    <nav class="netflix-nav">
+        <div class="logo">UNSTABLE HUB</div>
+        <div class="tabs">
+            <span class="tab active" onclick="filterBy('all', event)">All</span>
+            <span class="tab" onclick="filterBy('Wemmbu', event)">Wemmbu</span>
+            <span class="tab" onclick="filterBy('Parrot', event)">Parrot</span>
+            <span class="tab" onclick="filterBy('Spoke', event)">Spoke</span>
+            <span class="tab" onclick="filterBy('FlameFrags', event)">FlameFrags</span>
+        </div>
+    </nav>
 
-    <section class="hero">
-        <div class="video-overlay"></div>
-        <iframe id="hero-player" src="" frameborder="0" allow="autoplay; fullscreen"></iframe>
+    <main class="content">
+        <section class="video-row">
+            <h2 id="row-title">Recently Uploaded</h2>
+            <div class="posters-grid" id="video-grid">
+                <p class="loading">Loading chaos...</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="theater-mode" class="theater-overlay">
+        <button class="close-btn" onclick="closeTheater()">✕ Close</button>
         
-        <div class="cinematic-disclaimer" id="hero-overlay">
-            <div class="disclaimer-content">
-                <span class="warning-tag">ATTENTION</span>
-                <p>This production is owned by <span id="hero-creator">The Unstable Crew</span>.</p>
-                <p class="sub-text">This is not original work. All rights reserved to the creators.</p>
+        <div id="theater-disclaimer" class="theater-disclaimer">
+            <div class="disclaimer-text">
+                <span class="warning">NOTICE</span>
+                <p>This video is owned by <span id="current-creator">Creator</span>.</p>
+                <p class="sub-text">This is a fan-curated experience. All rights belong to the original producer.</p>
             </div>
         </div>
-    </section>
 
-    <section class="video-row">
-        <h2>Popular on Unstable</h2>
-        <div class="posters-container">
-            </div>
-    </section>
+        <iframe id="theater-player" src="" frameborder="0" allow="autoplay; fullscreen"></iframe>
+    </div>
 
     <script src="script.js"></script>
 </body>
